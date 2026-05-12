@@ -3,9 +3,9 @@
 Repositori ini berisi solusi untuk tes asesmen Fullstack Engineer yang mencakup implementasi API Toko Online dengan penanganan *race condition* dan program CLI untuk permainan *Hidden Item*.
 
 ## Teknologi yang Digunakan
-- **Framework:** Laravel 11
+- **Framework:** Laravel 12
 - **Bahasa:** PHP 8.2+
-- **Database:** MySQL/MariaDB
+- **Database:** MySQL
 - **Testing:** PHPUnit
 
 ---
@@ -14,14 +14,14 @@ Repositori ini berisi solusi untuk tes asesmen Fullstack Engineer yang mencakup 
 
 ### Task 1: Online Store API
 API ini dirancang untuk mensimulasikan sistem pesanan pada saat *flash sale*. 
-- [cite_start]**Atomic Transactions:** Menjamin pesanan dan item pesanan tersimpan secara utuh atau tidak sama sekali[cite: 20].
-- [cite_start]**Race Condition Handling:** Menggunakan mekanisme **Pessimistic Locking** (`lockForUpdate`) untuk memastikan stok produk tidak pernah bernilai negatif meskipun diakses secara bersamaan oleh banyak pengguna[cite: 23, 32].
-- [cite_start]**Standardized Response:** Menggunakan format JSON dengan kode respon HTTP yang sesuai (201 Created, 422 Unprocessable Entity, dll)[cite: 27, 29].
+- **Atomic Transactions:** Menjamin pesanan dan item pesanan tersimpan secara utuh atau tidak sama sekali.
+- **Race Condition Handling:** Menggunakan mekanisme **Pessimistic Locking** (`lockForUpdate`) untuk memastikan stok produk tidak pernah bernilai negatif meskipun diakses secara bersamaan oleh banyak pengguna.
+- **Standardized Response:** Menggunakan format JSON dengan kode respon HTTP yang sesuai (201 Created, 422 Unprocessable Entity, dll).
 
 ### Task 2: Hidden Item Game (CLI)
 Program berbasis terminal untuk mencari koordinat item tersembunyi berdasarkan langkah navigasi.
-- [cite_start]**Pathfinding Logic:** Menghitung koordinat akhir berdasarkan input langkah Utara, Timur, dan Selatan dengan mempertimbangkan hambatan (#) [cite: 55-61].
-- [cite_start]**Grid Visualization:** Menampilkan peta grid dengan simbol `$` sebagai penanda lokasi kemungkinan item (Poin Bonus)[cite: 63].
+- **Pathfinding Logic:** Menghitung koordinat akhir berdasarkan input langkah Utara, Timur, dan Selatan dengan mempertimbangkan hambatan (#).
+- **Grid Visualization:** Menampilkan peta grid dengan simbol `$` sebagai penanda lokasi kemungkinan item (Poin Bonus).
 
 ---
 
@@ -40,3 +40,26 @@ Program berbasis terminal untuk mencari koordinat item tersembunyi berdasarkan l
    ```bash
    cp .env.example .env
    php artisan key:generate
+
+4. **Konfigurasi Environment:**
+   ```bash
+   php artisan migrate
+   php artisan db:seed --class=ProductSeeder\
+
+## Cara Menjalankan Tes & Program
+
+1. **Menjalankan Functional Test (Task 1)**
+   ```bash
+   php artisan test --filter=OrderRaceConditionTest
+
+2. **Menjalankan Game CLI (Task 2)**
+   ```bash
+   # Format: php artisan game:find-item {A} {B} {C}
+   # Contoh: 1 langkah Utara, 2 langkah Timur, 1 langkah Selatan
+   php artisan game:find-item 1 2 1
+
+
+## Kontak
+Nama: Liem Hartono
+Repositori: https://github.com/LiemHartono/fomo-assessment
+
