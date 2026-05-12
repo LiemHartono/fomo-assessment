@@ -1,4 +1,3 @@
-```markdown
 # Fullstack Engineer Assessment - PT FOMO Inovasi Teknologi
 
 Repositori ini berisi solusi untuk tes asesmen Fullstack Engineer yang mencakup implementasi API Toko Online dengan penanganan *concurrency* (*race condition*) serta program CLI berbasis eksplorasi matriks untuk permainan *Hidden Item*.
