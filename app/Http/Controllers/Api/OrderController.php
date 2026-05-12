@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    /**
+     * Handle the flash sale order creation.
+     * Uses pessimistic locking (lockForUpdate) to prevent race conditions
+     * and ensure that inventory never goes below zero during high traffic.
+     */
+
     public function store(Request $request)
     {
         $request->validate([
